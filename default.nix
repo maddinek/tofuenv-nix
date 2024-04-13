@@ -10,7 +10,7 @@ let
       owner = "tofuutils";
       repo = "tofuenv";
       rev = "v${version}";
-      sha256 = "1smp68x7sg282nyivchwnfl8w69ih6xv06zyhwwm61q1wk";
+      sha256 = "1smp68x7sg282nyivchwnfl8w69ih6xv6hdy0v06zyhwwm61q1wk";
     };
 
     nativeBuildInputs = [ makeWrapper ];
