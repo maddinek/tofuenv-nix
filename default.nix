@@ -1,26 +1,20 @@
-# default.nix
 { lib, stdenv, fetchFromGitHub, makeWrapper, bash, coreutils, gnused, gnugrep, jq }:
 
 let
-  versions = import ./versions.nix;
+  version = "1.0.6";
   tofuenv = stdenv.mkDerivation rec {
     pname = "tofuenv";
-    version = versions.tofuenv;
+    inherit version;
 
     src = fetchFromGitHub {
       owner = "tofuutils";
       repo = "tofuenv";
       rev = "v${version}";
-      sha256 = "1smp68x7sg282nyivchwnfl8w69ih6xv6hdy0v06zyhwwm61q1wk";
+      sha256 = "1smp68x7sg282nyivchwnfl8w69ih6xv06zyhwwm61q1wk";
     };
 
     nativeBuildInputs = [ makeWrapper ];
     buildInputs = [ bash coreutils gnused gnugrep jq ];
-
-    preBuild = ''
-      mkdir -p $out/bin
-      ln -s ${gnugrep}/bin/grep $out/bin/grep
-    '';
 
     buildPhase = ''
       substituteInPlace libexec/tofuenv---version \
